@@ -1,11 +1,10 @@
-﻿using Soenneker.Tests.Unit;
-using Xunit;
+using Soenneker.Tests.Unit;
 
 namespace Soenneker.Dtos.Filters.ExactMatch.Tests;
 
 public sealed class ExactMatchFilterTests : UnitTest
 {
-    [Fact]
+    [Test]
     public void Default()
     {
 
