@@ -9,6 +9,9 @@ namespace Soenneker.Dtos.Filters.ExactMatch;
 /// </summary>
 public sealed class ExactMatchFilter : FilterBase
 {
+    /// <summary>
+    /// The value that the field must match.
+    /// </summary>
     [JsonPropertyName("value")]
     [JsonProperty("value")]
     public object? Value { get; set; }
