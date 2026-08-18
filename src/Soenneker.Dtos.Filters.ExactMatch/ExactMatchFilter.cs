@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 namespace Soenneker.Dtos.Filters.ExactMatch;
 
 /// <summary>
-/// A generic object for handling exact match filtering during querying
+/// Selects records whose named field equals a supplied scalar value.
 /// </summary>
 public sealed class ExactMatchFilter : FilterBase
 {
     /// <summary>
-    /// The value that the field must match.
+    /// Scalar value the target field must equal; its JSON type should match the field being queried.
     /// </summary>
     [JsonPropertyName("value")]
     [JsonProperty("value")]
