@@ -5,20 +5,41 @@
 
 # Soenneker.Dtos.Filters.ExactMatch
 
-Selects records whose named field equals a supplied scalar value.
+Represents a structured equality filter with a target field and JSON-compatible value.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.Dtos.Filters.ExactMatch
 ```
 
-## What you get
+## Usage
 
-- `ExactMatchFilter` — Selects records whose named field equals a supplied scalar value.
+```csharp
+using Soenneker.Dtos.Filters.ExactMatch;
 
-## API at a glance
+var statusFilter = new ExactMatchFilter
+{
+    Field = "status",
+    Value = "active"
+};
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `ExactMatchFilter.Value` | Scalar value the target field must equal; its JSON type should match the field being queried. | Scalar value the target field must equal; its JSON type should match the field being queried. |
+var tenantFilter = new ExactMatchFilter
+{
+    Field = "tenantId",
+    Value = 42
+};
+```
+
+Both System.Text.Json and Newtonsoft.Json serialize the properties as `field` and `value`:
+
+```json
+{
+  "field": "status",
+  "value": "active"
+}
+```
+
+`Value` is typed as `object?` so its JSON type can match the queried field. After deserializing untyped input, System.Text.Json commonly stores it as `JsonElement`, while Newtonsoft.Json commonly uses `JValue`, `JObject`, or `JArray`. Convert and validate it against server-owned field metadata before building a query.
+
+The DTO does not require a scalar at runtime, define how null equality behaves, validate field names, perform type coercion, or execute a filter. Allow-list `Field`, reject unsupported value shapes, and parameterize the converted value. Never concatenate either property into a query expression.
