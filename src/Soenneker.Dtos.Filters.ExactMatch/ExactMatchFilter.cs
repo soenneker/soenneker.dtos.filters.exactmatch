@@ -1,6 +1,5 @@
 ﻿using Soenneker.Dtos.Filters.Base;
 using System.Text.Json.Serialization;
-using Newtonsoft.Json;
 
 namespace Soenneker.Dtos.Filters.ExactMatch;
 
@@ -13,6 +12,5 @@ public sealed class ExactMatchFilter : FilterBase
     /// Scalar value the target field must equal; its JSON type should match the field being queried.
     /// </summary>
     [JsonPropertyName("value")]
-    [JsonProperty("value")]
     public object? Value { get; set; }
 }

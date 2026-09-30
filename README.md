@@ -31,7 +31,7 @@ var tenantFilter = new ExactMatchFilter
 };
 ```
 
-Both System.Text.Json and Newtonsoft.Json serialize the properties as `field` and `value`:
+System.Text.Json serializes the properties as `field` and `value`:
 
 ```json
 {
@@ -40,6 +40,6 @@ Both System.Text.Json and Newtonsoft.Json serialize the properties as `field` an
 }
 ```
 
-`Value` is typed as `object?` so its JSON type can match the queried field. After deserializing untyped input, System.Text.Json commonly stores it as `JsonElement`, while Newtonsoft.Json commonly uses `JValue`, `JObject`, or `JArray`. Convert and validate it against server-owned field metadata before building a query.
+`Value` is typed as `object?` so its JSON type can match the queried field. After deserializing untyped input, System.Text.Json commonly stores it as `JsonElement`. Convert and validate it against server-owned field metadata before building a query.
 
 The DTO does not require a scalar at runtime, define how null equality behaves, validate field names, perform type coercion, or execute a filter. Allow-list `Field`, reject unsupported value shapes, and parameterize the converted value. Never concatenate either property into a query expression.
